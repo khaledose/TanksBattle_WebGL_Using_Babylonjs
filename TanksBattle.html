@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Tanks Battle </title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script src="js/babylon.max.js"></script>
+        <script src="js/cannon.max.js"></script>
+        <script src="js/jquery-3.2.1.js"></script>
+		<script src="js/babylon.custom.js"></script>
+    </head>
+    <body>
+        <!-- CANVAS -->
+        <canvas id="renderCanvas" width="1600" height="1200"></canvas>
+        <canvas id="MapsCanvas" width="1340" height="628"></canvas>
+        <canvas id="CreditsCanvas" width="1340" height="628"></canvas>
+        <canvas id="InstructionsCanvas" width="1340" height="628"></canvas>
+        <canvas id="UICanvas" width="1340" height="628"></canvas>
+        <canvas id="GameOverCanvas" width="1340" height="628"></canvas>
+        <canvas id="ModeCanvas" width="1340" height="628"></canvas>
+
+        <!-- SCRIPTS -->
+        <script type="text/javascript">
+            /* onClick/GoTo_Functions */
+            function gotoMaps() {
+                document.getElementById("renderCanvas").style.display = "none";
+                document.getElementById("UICanvas").style.display = "none";
+                document.getElementById("CreditsCanvas").style.display = "none";
+                document.getElementById("InstructionsCanvas").style.display = "none";
+                document.getElementById("GameOverCanvas").style.display = "none";
+
+                document.getElementById("WinnerContainer").style.display = "none";
+                document.getElementById("BulletsContainer").style.display = "none";
+
+                document.getElementById("playBtn").style.display = "none";
+                document.getElementById("instructionsBtn").style.display = "none";
+                document.getElementById("creditsBtn").style.display = "none";
+                document.getElementById("ModeCanvas").style.display = "none";
+                document.getElementById("realBtn").style.display = "none";
+                document.getElementById("cartoonBtn").style.display = "none";
+
+                document.getElementById("MapsCanvas").style.display = "inline";
+                document.getElementById("NTanksContainer").style.display = "block";
+                document.getElementById("backBtn").style.display = "inline";
+
+                document.getElementById("sandBtn").style.display = "inline";
+                document.getElementById("fogBtn").style.display = "inline";
+                document.getElementById("snowBtn").style.display = "inline";
+                document.getElementById("forestBtn").style.display = "inline";
+
+                $('#cartoonBtn').click(function() {
+                    document.getElementById("snowBtn").style.display = "none";
+                    document.getElementById("forestBtn").style.display = "none";
+                    document.getElementById("snowLockedBtn").style.display = "block";
+                    document.getElementById("forestLockedBtn").style.display = "block";
+                });
+
+                Maps();
+            }
+            function gotoMode() {
+                document.getElementById("renderCanvas").style.display = "none";
+                document.getElementById("UICanvas").style.display = "none";
+                document.getElementById("CreditsCanvas").style.display = "none";
+                document.getElementById("InstructionsCanvas").style.display = "none";
+                document.getElementById("GameOverCanvas").style.display = "none";
+
+                document.getElementById("WinnerContainer").style.display = "none";
+                document.getElementById("BulletsContainer").style.display = "none";
+
+                document.getElementById("playBtn").style.display = "none";
+                document.getElementById("instructionsBtn").style.display = "none";
+                document.getElementById("creditsBtn").style.display = "none";
+
+                document.getElementById("MapsCanvas").style.display = "none";
+                document.getElementById("sandBtn").style.display = "none";
+                document.getElementById("fogBtn").style.display = "none";
+                document.getElementById("snowBtn").style.display = "none";
+                document.getElementById("forestBtn").style.display = "none";
+                document.getElementById("snowLockedBtn").style.display = "none";
+                document.getElementById("forestLockedBtn").style.display = "none";
+
+                document.getElementById("NTanksContainer").style.display = "none";
+
+                document.getElementById("ModeCanvas").style.display = "inline";
+                document.getElementById("realBtn").style.display = "inline";
+                document.getElementById("cartoonBtn").style.display = "inline";
+                document.getElementById("backBtn").style.display = "inline";
+                document.getElementById("backBtn").style.zIndex = "3";
+
+                Mode();
+            }
+            function gotoUI() {
+                document.getElementById("renderCanvas").style.display = "none";
+                document.getElementById("CreditsCanvas").style.display = "none";
+                document.getElementById("InstructionsCanvas").style.display = "none";
+                document.getElementById("MapsCanvas").style.display = "none";
+                document.getElementById("GameOverCanvas").style.display = "none";
+
+                document.getElementById("WinnerContainer").style.display = "none";
+                document.getElementById("NTanksContainer").style.display = "none";
+                document.getElementById("BulletsContainer").style.display = "none";
+
+                document.getElementById("backBtn").style.display = "none";
+                document.getElementById("sandBtn").style.display = "none";
+                document.getElementById("fogBtn").style.display = "none";
+                document.getElementById("snowBtn").style.display = "none";
+                document.getElementById("snowLockedBtn").style.display = "none";
+                document.getElementById("forestLockedBtn").style.display = "none";
+                document.getElementById("forestBtn").style.display = "none";
+
+                document.getElementById("ModeCanvas").style.display = "none";
+                document.getElementById("realBtn").style.display = "none";
+                document.getElementById("cartoonBtn").style.display = "none";
+
+                document.getElementById("UICanvas").style.display = "inline";
+                document.getElementById("playBtn").style.display = "inline";
+                document.getElementById("instructionsBtn").style.display = "inline";
+                document.getElementById("creditsBtn").style.display = "inline";
+
+                document.getElementById("musicPlayer").play();
+
+                UI();
+            }
+            function gotoCredits() {
+                document.getElementById("renderCanvas").style.display = "none";
+                document.getElementById("UICanvas").style.display = "none";
+                document.getElementById("InstructionsCanvas").style.display = "none";
+                document.getElementById("MapsCanvas").style.display = "none";
+                document.getElementById("GameOverCanvas").style.display = "none";
+
+                document.getElementById("WinnerContainer").style.display = "none";
+                document.getElementById("BulletsContainer").style.display = "none";
+
+                document.getElementById("playBtn").style.display = "none";
+                document.getElementById("instructionsBtn").style.display = "none";
+                document.getElementById("creditsBtn").style.display = "none";
+                document.getElementById("sandBtn").style.display = "none";
+                document.getElementById("fogBtn").style.display = "none";
+                document.getElementById("snowBtn").style.display = "none";
+                document.getElementById("forestBtn").style.display = "none";
+                document.getElementById("snowLockedBtn").style.display = "none";
+                document.getElementById("forestLockedBtn").style.display = "none";
+
+                document.getElementById("ModeCanvas").style.display = "none";
+                document.getElementById("realBtn").style.display = "none";
+                document.getElementById("cartoonBtn").style.display = "none";
+
+                document.getElementById("CreditsCanvas").style.display = "inline";
+                document.getElementById("backBtn").style.display = "inline";
+
+                Credits();
+            }
+            function gotoInstructions() {
+                document.getElementById("renderCanvas").style.display = "none";
+                document.getElementById("UICanvas").style.display = "none";
+                document.getElementById("CreditsCanvas").style.display = "none";
+                document.getElementById("MapsCanvas").style.display = "none";
+                document.getElementById("GameOverCanvas").style.display = "none";
+
+                document.getElementById("WinnerContainer").style.display = "none";
+                document.getElementById("BulletsContainer").style.display = "none";
+
+                document.getElementById("playBtn").style.display = "none";
+                document.getElementById("instructionsBtn").style.display = "none";
+                document.getElementById("creditsBtn").style.display = "none";
+                document.getElementById("sandBtn").style.display = "none";
+                document.getElementById("fogBtn").style.display = "none";
+                document.getElementById("snowBtn").style.display = "none";
+                document.getElementById("forestBtn").style.display = "none";
+                document.getElementById("snowLockedBtn").style.display = "none";
+                document.getElementById("forestLockedBtn").style.display = "none";
+
+                document.getElementById("ModeCanvas").style.display = "none";
+                document.getElementById("realBtn").style.display = "none";
+                document.getElementById("cartoonBtn").style.display = "none";
+
+                document.getElementById("InstructionsCanvas").style.display = "inline";
+                document.getElementById("backBtn").style.display = "inline";
+
+                Instructions();
+            }
+            function gotoSand() {
+                onGame = true;
+                document.getElementById("UICanvas").style.display = "none";
+                document.getElementById("CreditsCanvas").style.display = "none";
+                document.getElementById("InstructionsCanvas").style.display = "none";
+                document.getElementById("MapsCanvas").style.display = "none";
+                document.getElementById("GameOverCanvas").style.display = "none";
+
+                document.getElementById("backBtn").style.display = "none";
+                document.getElementById("playBtn").style.display = "none";
+                document.getElementById("instructionsBtn").style.display = "none";
+                document.getElementById("creditsBtn").style.display = "none";
+                document.getElementById("sandBtn").style.display = "none";
+                document.getElementById("fogBtn").style.display = "none";
+                document.getElementById("snowBtn").style.display = "none";
+                document.getElementById("forestBtn").style.display = "none";
+                document.getElementById("snowLockedBtn").style.display = "none";
+                document.getElementById("forestLockedBtn").style.display = "none";
+
+                document.getElementById("NTanksContainer").style.display = "none";
+                document.getElementById("WinnerContainer").style.display = "none";
+
+                document.getElementById("ModeCanvas").style.display = "none";
+                document.getElementById("realBtn").style.display = "none";
+                document.getElementById("cartoonBtn").style.display = "none";
+
+                document.getElementById("renderCanvas").style.display = "inline";
+                document.getElementById("PlayerContainer").style.display = "block";
+                document.getElementById("slider").style.display = "block";
+                //document.getElementById("BulletsContainer").style.display = "inline";
+
+                var musicPlayer = document.getElementById("musicPlayer");
+                musicPlayer.pause();
+
+                sceneNum = 0;
+                n = parseInt(document.getElementById("Label").value);
+                if(n < 2 || n == " ")
+                    n=2;
+                if(n>8)
+                    n=8;
+
+                if(_isReal)
+                    Game();
+                else
+                    GameCartoon();
+            }
+            function gotoFog() {
+                onGame = true;
+                document.getElementById("renderCanvas").style.display = "none";
+                document.getElementById("UICanvas").style.display = "none";
+                document.getElementById("CreditsCanvas").style.display = "none";
+                document.getElementById("InstructionsCanvas").style.display = "none";
+                document.getElementById("MapsCanvas").style.display = "none";
+                document.getElementById("GameOverCanvas").style.display = "none";
+
+                document.getElementById("backBtn").style.display = "none";
+                document.getElementById("playBtn").style.display = "none";
+                document.getElementById("instructionsBtn").style.display = "none";
+                document.getElementById("creditsBtn").style.display = "none";
+                document.getElementById("sandBtn").style.display = "none";
+                document.getElementById("fogBtn").style.display = "none";
+                document.getElementById("snowBtn").style.display = "none";
+                document.getElementById("forestBtn").style.display = "none";
+                document.getElementById("snowLockedBtn").style.display = "none";
+                document.getElementById("forestLockedBtn").style.display = "none";
+
+                document.getElementById("NTanksContainer").style.display = "none";
+                document.getElementById("WinnerContainer").style.display = "none";
+
+                document.getElementById("ModeCanvas").style.display = "none";
+                document.getElementById("realBtn").style.display = "none";
+                document.getElementById("cartoonBtn").style.display = "none";
+
+                document.getElementById("renderCanvas").style.display = "inline";
+                document.getElementById("PlayerContainer").style.display = "block";
+                document.getElementById("slider").style.display = "block";
+                //document.getElementById("BulletsContainer").style.display = "inline";
+
+                var musicPlayer = document.getElementById("musicPlayer");
+                musicPlayer.pause();
+
+                sceneNum = 1;
+                n = parseInt(document.getElementById("Label").value);
+                if(n < 2 || n == " ")
+                    n=2;
+                if(n>8)
+                    n=8;
+
+                if(_isReal)
+                    Game();
+                else
+                    GameCartoon();
+            }
+            function gotoSnow() {
+                onGame = true;
+                document.getElementById("renderCanvas").style.display = "none";
+                document.getElementById("UICanvas").style.display = "none";
+                document.getElementById("CreditsCanvas").style.display = "none";
+                document.getElementById("InstructionsCanvas").style.display = "none";
+                document.getElementById("MapsCanvas").style.display = "none";
+                document.getElementById("GameOverCanvas").style.display = "none";
+
+                document.getElementById("backBtn").style.display = "none";
+                document.getElementById("playBtn").style.display = "none";
+                document.getElementById("instructionsBtn").style.display = "none";
+                document.getElementById("creditsBtn").style.display = "none";
+                document.getElementById("sandBtn").style.display = "none";
+                document.getElementById("fogBtn").style.display = "none";
+                document.getElementById("snowBtn").style.display = "none";
+                document.getElementById("forestBtn").style.display = "none";
+                document.getElementById("snowLockedBtn").style.display = "none";
+                document.getElementById("forestLockedBtn").style.display = "none";
+
+                document.getElementById("NTanksContainer").style.display = "none";
+                document.getElementById("WinnerContainer").style.display = "none";
+
+                document.getElementById("ModeCanvas").style.display = "none";
+                document.getElementById("realBtn").style.display = "none";
+                document.getElementById("cartoonBtn").style.display = "none";
+
+                document.getElementById("renderCanvas").style.display = "inline";
+                document.getElementById("PlayerContainer").style.display = "block";
+                document.getElementById("slider").style.display = "block";
+                //document.getElementById("BulletsContainer").style.display = "inline";
+
+                var musicPlayer = document.getElementById("musicPlayer");
+                musicPlayer.pause();
+
+                sceneNum = 2;
+                n = parseInt(document.getElementById("Label").value);
+                if(n < 2 || n == " ")
+                    n=2;
+                if(n>8)
+                    n=8;
+
+                if(_isReal)
+                    Game();
+                else
+                    GameCartoon();
+            }
+            function gotoForest() {
+                onGame = true;
+                document.getElementById("renderCanvas").style.display = "none";
+                document.getElementById("UICanvas").style.display = "none";
+                document.getElementById("CreditsCanvas").style.display = "none";
+                document.getElementById("InstructionsCanvas").style.display = "none";
+                document.getElementById("MapsCanvas").style.display = "none";
+                document.getElementById("GameOverCanvas").style.display = "none";
+
+                document.getElementById("backBtn").style.display = "none";
+                document.getElementById("playBtn").style.display = "none";
+                document.getElementById("instructionsBtn").style.display = "none";
+                document.getElementById("creditsBtn").style.display = "none";
+                document.getElementById("sandBtn").style.display = "none";
+                document.getElementById("fogBtn").style.display = "none";
+                document.getElementById("snowBtn").style.display = "none";
+                document.getElementById("forestBtn").style.display = "none";
+                document.getElementById("snowLockedBtn").style.display = "none";
+                document.getElementById("forestLockedBtn").style.display = "none";
+
+                document.getElementById("NTanksContainer").style.display = "none";
+                document.getElementById("WinnerContainer").style.display = "none";
+                //document.getElementById("BulletsContainer").style.display = "inline";
+
+                document.getElementById("ModeCanvas").style.display = "none";
+                document.getElementById("realBtn").style.display = "none";
+                document.getElementById("cartoonBtn").style.display = "none";
+
+                document.getElementById("renderCanvas").style.display = "inline";
+                document.getElementById("PlayerContainer").style.display = "block";
+                document.getElementById("slider").style.display = "block";
+
+                var musicPlayer = document.getElementById("musicPlayer");
+                musicPlayer.pause();
+
+                sceneNum = 3;
+                n = parseInt(document.getElementById("Label").value);
+                if(n < 2 || n == " ")
+                    n=2;
+                if(n>8)
+                    n=8;
+
+                if(_isReal)
+                    Game();
+                else
+                    GameCartoon();
+            }
+        </script>
+        <script src="js/Game.js"></script>
+        <script src="js/Maps.js"></script>
+        <script src="js/Credits.js"></script>
+        <script src="js/Instructions.js"></script>
+        <script src="js/UI.js"></script>
+        <script src="js/GameOver.js"></script>
+        <script src="js/Mode.js"></script>
+
+        <!-- HUD -->
+        <div id="PlayerContainer">
+            <div id="PlayerTime"></div>
+            <div id="PlayerDistance"></div>
+        </div>
+        <div id="NTanksContainer">
+            <input id="Label" maxlength="1" size="1" value="2"></input>
+        </div>
+        <div id="WinnerContainer">
+            <div id="Winner"></div>
+        </div>
+        <div id="BulletsContainer">
+            <img id="bullet" src="images/bullet.png" alt="bullet">
+            <div id="nBullets"></div>
+        </div>
+        <div id="powerupsTextContainer">
+            <div id="powerupText"></div>
+        </div>
+
+        <!-- BUTTONS -->
+        <img alt="playBtn" src="images/play.png"
+             style="height: 85px;width: 198px;top: 47%;left: 42%;position: absolute;" id="playBtn" onclick="gotoMode()">
+        <img alt="creditsBtn" src="images/credits.png"
+             style="height: 85px;width: 198px;top: 79%;left: 42%;position: absolute;" id="creditsBtn" onclick="gotoCredits()">
+        <img alt="instructionsBtn" src="images/instructions.png"
+             style="height: 85px;width: 198px;top: 63%;left: 42%;position: absolute;" id="instructionsBtn" onclick="gotoInstructions()">
+        <img alt="backBtn" src="images/back.png"
+             style="height: 85px;width: 198px;top: 82%;left: 81%;position: absolute;" id="backBtn" onclick="gotoUI()">
+
+        <img alt="sandBtn" src="images/sand.png"
+             style="height: 185px;width: 200px;top: 30%;left: 5%;position: absolute;display: inline;" id="sandBtn" onclick="gotoSand()">
+        <img alt="fogBtn" src="images/fog.png"
+             style="height: 185px;width: 200px;top: 30%;left: 22.6%;position: absolute;display: inline;" id="fogBtn" onclick="gotoFog()">
+        <img alt="snowBtn" src="images/snow.jpg"
+             style="height: 185px;width: 200px;top: 30%;left: 40.2%;position: absolute;display: inline;" id="snowBtn" onclick="gotoSnow()">
+        <img alt="forestBtn" src="images/forest.jpg"
+             style="height: 185px;width: 200px;top: 30%;left: 57.8%;position: absolute;display: inline;" id="forestBtn" onclick="gotoForest()">
+        <img alt="snowLockedBtn" src="images/snowLocked.png"
+             style="height: 185px;width: 200px;top: 30%;left: 40.2%;position: absolute;display: inline;" id="snowLockedBtn">
+        <img alt="forestLockedBtn" src="images/forestLocked.png"
+             style="height: 185px;width: 200px;top: 30%;left: 57.8%;position: absolute;display: inline;" id="forestLockedBtn">
+
+        <img alt="realBtn" src="images/real.png"
+             style="height: 100%;width: 50%;top: 0%;left: 0%;position: absolute;display: inline;" id="realBtn" onclick="gotoMaps(), _isReal = true">
+        <img alt="cartoonBtn" src="images/cartoon.png"
+             style="height: 100%;width: 50%;top: 0%;right: 0%;position: absolute;display: inline;" id="cartoonBtn" onclick="gotoMaps(), _isReal = false">
+
+        <!-- ADS -->
+        <div id="slider" >
+            <figure>
+                <img src="images/France.jpg">
+                <img src="images/Ibiza.jpg">
+                <img src="images/Amsterdam.jpg">
+                <img src="images/France.jpg">
+                <img src="images/Amsterdam.jpg">
+            </figure>
+        </div>
+
+        <!-- MUSIC -->
+        <audio id="musicPlayer" autoplay="" controls="" loop="" preload="" hidden="">
+            <source src="/AudioClips/introMusic.mp3" type="audio/mpeg"></source>
+        </audio>
+
+        <!-- INTRODUCTION -->
+        <img id="intro1" alt="intro1" src="images/1.png">
+        <img id="intro2" alt="intro2" src="images/2.png">
+        <img id="intro3" alt="intro3" src="images/3.png">
+
+    </body>
+</html>
